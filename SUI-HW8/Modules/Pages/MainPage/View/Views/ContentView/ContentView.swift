@@ -18,8 +18,10 @@ struct ContentView: View {
                     }
                    
                 }.frame(height: headerHeight)
-                PostView()
-                PostView()
+                PostView(marked: true)
+                PostView(marked: false)
+                PostView(marked: true)
+
             }.padding(30)
         }
         .padding(.top, 30)

@@ -29,7 +29,10 @@ struct NavigationBarView: View {
                     Image(systemName: "line.3.horizontal")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30, height: 30)
+                        .frame(
+                            width: UIFontMetrics(forTextStyle: .title1).scaledValue(for: 30),
+                            height: UIFontMetrics(forTextStyle: .title1).scaledValue(for: 30)
+                        )
                         .foregroundStyle(.contrastReversed)
                 }
                 Spacer()
@@ -39,21 +42,14 @@ struct NavigationBarView: View {
                     Image(systemName: "person.crop.circle")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30, height: 30)
+                        .frame(
+                            width: UIFontMetrics(forTextStyle: .title1).scaledValue(for: 30),
+                            height: UIFontMetrics(forTextStyle: .title1).scaledValue(for: 30)
+                        )
                         .foregroundStyle(.contrastReversed)
                 }
             }
             .padding(.horizontal, 30)
         }
-    }
-}
-
-struct ImageSquareModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        //        GeometryReader { geometry in
-        content
-            .frame(width: 50, height: 50)
-        //                .clipShape(Circle())
-        //        }
     }
 }

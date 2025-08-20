@@ -30,7 +30,7 @@ struct CustomTextAndImageView: UIViewRepresentable {
         let label = SizingLabel()
         label.maxWidth = width
         label.textAlignment = .left
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = false
         return label
     }
@@ -39,7 +39,6 @@ struct CustomTextAndImageView: UIViewRepresentable {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = lineHeightModifier
         let scaledFont = UIFontMetrics(forTextStyle: fontStyle).scaledFont(for: font)
-
        
         let textString = NSMutableAttributedString(
             string: text + " ",
@@ -48,7 +47,7 @@ struct CustomTextAndImageView: UIViewRepresentable {
         
         if let imageString = imageString, let image = UIImage(named: imageString) {
             let attachment = NSTextAttachment(image: image)
-            attachment.bounds = CGRect(x: 0, y: font.descender + 0.45 * font.capHeight, width: font.capHeight, height: font.capHeight)
+            attachment.bounds = CGRect(x: 0, y: scaledFont.descender + 0.45 * scaledFont.capHeight, width: scaledFont.capHeight, height: scaledFont.capHeight)
             
             let implementedImageString: NSAttributedString = NSAttributedString(attachment: attachment)
             textString.append(implementedImageString)
