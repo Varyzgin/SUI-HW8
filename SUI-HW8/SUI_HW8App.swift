@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Pages: String {
+enum Pages: String, CaseIterable {
     case house, folder, plus, message, person
 }
 
@@ -44,11 +44,9 @@ struct SUI_HW8App: App {
 
                     .allowsHitTesting(false)
                 HStack {
-                    TabItemView(path: $path, image: Pages.house.rawValue)
-                    TabItemView(path: $path, image: Pages.folder.rawValue)
-                    TabItemView(path: $path, image: Pages.plus.rawValue)
-                    TabItemView(path: $path, image: Pages.message.rawValue)
-                    TabItemView(path: $path, image: Pages.person.rawValue)
+                    ForEach(Pages.allCases, id: \.self) { category in
+                        TabItemView(path: $path, image: category.rawValue)
+                    }
                 }
                 .padding(.horizontal, 30)
                 .padding(.vertical, 20)
@@ -64,7 +62,9 @@ struct TabItemView: View {
     
     var body: some View {
         Button {
-            path = image
+            withAnimation {
+                path = image
+            }
         } label: {
             if image == Pages.plus.rawValue {
                 Circle()
